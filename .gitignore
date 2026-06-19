@@ -1,0 +1,29 @@
+# Next.js build output
+.next/
+
+# Node.js modules
+/node_modules/
+
+# Logs
+/logs
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# Build output
+out/
+dist/
+
+# Dependency directories
+yarn-error.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
