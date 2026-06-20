@@ -156,7 +156,7 @@ export default function AgentsPage() {
         </div>
 
         <Panel
-          title="All Agents"
+          title="All"
           loading={loading}
           right={
             <div className="flex relative">

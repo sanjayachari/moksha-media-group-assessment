@@ -122,7 +122,7 @@ export default function UsersPage() {
         </div>
 
         <Panel
-          title="All Users"
+          title="All"
           loading={loading}
           right={
             <div className="flex relative">
