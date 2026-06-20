@@ -9,28 +9,28 @@ const testimonials = [
     author: "Sarah Chen",
     role: "Head of Operations",
     company: "Nexlify",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    avatar: "/home/testim1.jpg",
   },
   {
     quote: "We automated onboarding and saved 25 hours weekly.",
     author: "Marcus Okoro",
     role: "CTO",
     company: "Vellum Dynamics",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    avatar: "/home/testim2.jpg",
   },
   {
     quote: "Deployment was completed in less than a week.",
     author: "Elena Rodriguez",
     role: "VP Engineering",
     company: "PulseForge",
-    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+    avatar: "/home/testim3.jpg",
   },
   {
     quote: "The autonomous agents handle 80% of our routine infrastructure tasks.",
     author: "James Kim",
     role: "Infrastructure Lead",
     company: "Stratum Labs",
-    avatar: "https://randomuser.me/api/portraits/men/45.jpg",
+    avatar: "/home/testim4.jpg",
   },
 ]
 
