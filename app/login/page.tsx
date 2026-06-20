@@ -2,7 +2,10 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Loader2 } from 'lucide-react'
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 const DOTS = Array.from({ length: 28 }, () => ({
   x: Math.random() * 100 + '%',
@@ -15,10 +18,48 @@ const DOTS = Array.from({ length: 28 }, () => ({
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const router = useRouter()
+  const { status } = useSession()
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    if (status === 'authenticated') {
+      router.push('/dashboard')
+    }
+  }, [status, router])
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Login attempt with:', email)
+    setError('')
+    
+    if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) {
+      setError('Please enter a valid email address.')
+      return
+    }
+    
+    if (!password) {
+      setError('Please enter your password.')
+      return
+    }
+
+    setLoading(true)
+    
+    try {
+      const res = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+      })
+
+      if (res?.error) {
+        setError(res.error)
+      } else {
+        router.push('/dashboard')
+      }
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -139,6 +180,7 @@ export default function LoginPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
+          {error && <p className="text-red-500 text-sm text-center bg-red-500/10 py-2 rounded-lg">{error}</p>}
           <input
             type="email"
             placeholder="Your email"
@@ -159,8 +201,10 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-white text-black font-semibold py-4 rounded-2xl hover:bg-white/90 transition text-lg mt-2"
+            disabled={loading}
+            className="w-full bg-white text-black font-semibold py-4 rounded-2xl hover:bg-white/90 transition text-lg mt-2 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
           >
+            {loading ? <Loader2 className="animate-spin" size={20} /> : null}
             Sign in
           </button>
         </form>

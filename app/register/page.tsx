@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, User, Mail, Lock } from 'lucide-react'
-import { RiGeminiFill } from 'react-icons/ri'
+import { ArrowLeft, Loader2 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 const DOTS = Array.from({ length: 28 }, () => ({
   x: Math.random() * 100 + '%',
@@ -22,18 +23,73 @@ export default function RegisterPage() {
     confirmPassword: '',
   })
 
-  const handleChange = (e) => {
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const router = useRouter()
+  const { status } = useSession()
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      router.push('/dashboard')
+    }
+  }, [status, router])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords don't match!")
+    setError('')
+    
+    if (!formData.firstName.trim() || !formData.lastName.trim()) {
+      setError('First and last name are required.')
       return
     }
-    console.log('Register Data:', formData)
-    // Add your registration logic here
+
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setError('Please enter a valid email address.')
+      return
+    }
+
+    if (formData.password.length < 8) {
+      setError('Password must be at least 8 characters.')
+      return
+    }
+    
+    if (!/[0-9]/.test(formData.password)) {
+      setError('Password must contain at least one number.')
+      return
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords don't match!")
+      return
+    }
+
+    setLoading(true)
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
+          email: formData.email,
+          password: formData.password,
+        })
+      })
+
+      if (res.ok) {
+        router.push('/login')
+      } else {
+        const data = await res.json()
+        setError(data.error || 'Registration failed')
+      }
+    } catch (err) {
+      setError('Something went wrong')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -79,6 +135,7 @@ export default function RegisterPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
+          {error && <p className="text-red-500 text-sm text-center bg-red-500/10 py-2 rounded-lg">{error}</p>}
           <div className="grid grid-cols-2 gap-4">
             <input
               type="text"
@@ -132,8 +189,10 @@ export default function RegisterPage() {
 
           <button
             type="submit"
-            className="w-full bg-white text-black font-semibold py-4 rounded-2xl hover:bg-white/90 transition text-lg mt-2"
+            disabled={loading}
+            className="w-full bg-white text-black font-semibold py-4 rounded-2xl hover:bg-white/90 transition text-lg mt-2 flex justify-center items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
           >
+            {loading ? <Loader2 className="animate-spin" size={20} /> : null}
             Create Account
           </button>
         </form>
