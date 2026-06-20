@@ -53,7 +53,7 @@ export default function CTA() {
               </div>
 
               {/* Heading */}
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.08] mb-5 font-display tracking-[-0.03em]">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.08] mb-5 font-display tracking-[-0.03em] line-clamp-2 md:line-clamp-none">
                 AI Agents That Actually<br />
                 Get Real Work Done
               </h2>
@@ -65,10 +65,10 @@ export default function CTA() {
 
               {/* Buttons */}
               <div className="flex flex-wrap items-center gap-4 mb-12">
-                
+
                 {/* Primary Button */}
                 <button
-                onClick={() => alert('Contact sales form coming soon!')}
+                  onClick={() => alert('Contact sales form coming soon!')}
                   className="relative inline-flex items-center justify-center p-[3px] rounded-full cursor-pointer outline-none border-none"
                   style={{
                     background:
@@ -90,12 +90,12 @@ export default function CTA() {
                 </button>
 
                 {/* Secondary Button */}
-               <Link href="/ask-ai">
-                <button
-                  className="px-7 py-3 rounded-full text-white/45 text-sm font-medium hover:text-white/70 transition-all duration-200 cursor-pointer font-body bg-transparent border border-white/[0.08]"
-                >
-                  AI Chat
-                </button></Link>
+                <Link href="/ask-ai">
+                  <button
+                    className="px-7 py-3 rounded-full text-white/45 text-sm font-medium hover:text-white/70 transition-all duration-200 cursor-pointer font-body bg-transparent border border-white/[0.08]"
+                  >
+                    AI Chat
+                  </button></Link>
               </div>
 
               {/* Metrics */}

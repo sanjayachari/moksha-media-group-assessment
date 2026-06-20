@@ -62,8 +62,9 @@ export default function PricingTeaser() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white leading-[1.05] font-display tracking-[-0.03em]">
-            Simple, transparent<br />pricing.
+          <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] font-display tracking-[-0.03em] line-clamp-2">
+            Simple, transparent<br />
+            pricing.
           </h2>
           <div className="flex flex-col justify-end">
             <p className="text-lg text-white/60 max-w-md">
@@ -82,8 +83,8 @@ export default function PricingTeaser() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className={`relative rounded-3xl p-8 border transition-all duration-300 hover:-translate-y-1 ${plan.popular
-                  ? 'border-emerald-400/60 bg-gradient-to-b from-emerald-400/[0.08] to-transparent'
-                  : 'border-white/[0.08] hover:border-white/[0.15]'
+                ? 'border-emerald-400/60 bg-gradient-to-b from-emerald-400/[0.08] to-transparent'
+                : 'border-white/[0.08] hover:border-white/[0.15]'
                 }`}
             >
               {plan.popular && (
@@ -122,8 +123,8 @@ export default function PricingTeaser() {
                   alert(`Coming Soon!! You clicked on the ${plan.name} plan.`)
                 }}
                 className={`w-full py-4 rounded-2xl font-medium transition-all ${plan.popular
-                    ? 'bg-emerald-400 text-black hover:bg-emerald-300'
-                    : 'border border-white/30 hover:bg-white/5 text-white'
+                  ? 'bg-emerald-400 text-black hover:bg-emerald-300'
+                  : 'border border-white/30 hover:bg-white/5 text-white'
                   }`}
               >
                 {plan.cta}
