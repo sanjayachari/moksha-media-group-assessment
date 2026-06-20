@@ -7,7 +7,7 @@ Aether AI is a premium, modern SaaS platform designed to showcase full-stack eng
 Built with **Next.js 14 (App Router)**, **React**, **Tailwind CSS**, and **MongoDB**, this application demonstrates a production-ready architecture with secure authentication, modern serverless deployment on Vercel, and continuous integration via GitHub Actions.
 
 ## Links
-- **Live Demo**: [https://sanjjay-moksha-media-group-assessment-34ihh7yr8.vercel.app/](https://sanjjay-moksha-media-group-assessment-34ihh7yr8.vercel.app/)
+- **Live Demo**: [https://sanjjay-moksha-media-group-assessme.vercel.app/](https://sanjjay-moksha-media-group-assessme.vercel.app/)
 - **GitHub Repository**: [https://github.com/sanjayachari/moksha-media-group-assessment](https://github.com/sanjayachari/moksha-media-group-assessment)
 
 ---
@@ -156,7 +156,7 @@ On every push and pull request to the `main` branch, the pipeline:
 
 To test the role-based access control and user management features, you can log in with the following admin account:
 
-**Email**: `codesanjay93@gmail.com`  
+**Email**: `admin.root@gmail.com`  
 **Password**: `Unlockno010203@`
 
 ---
