@@ -158,7 +158,7 @@ export default function RequestQuoteModal({ open, onClose }) {
                             <p style={{
                                 fontFamily: 'DM Sans, sans-serif', fontSize: '12px',
                                 color: 'rgba(255,255,255,0.32)', marginTop: '4px',
-                            }}>We'll respond within 24 hours with pricing and lead times.</p>
+                            }}>Well respond within 24 hours with pricing and lead times.</p>
                         </div>
                         <button
                             onClick={onClose}
@@ -341,7 +341,7 @@ function QuoteForm({ form, errors, loading, set, onSubmit }) {
                 flexWrap: 'wrap', gap: '16px', marginTop: '20px',
             }}>
                 <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.22)', maxWidth: '260px', lineHeight: 1.6, fontFamily: 'DM Sans, sans-serif', margin: 0 }}>
-                    We'll verify availability and respond with pricing within 24 hours.
+                    We ll verify availability and respond with pricing within 24 hours.
                 </p>
                 <button
                     type="submit" disabled={loading}

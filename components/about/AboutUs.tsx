@@ -266,7 +266,7 @@ export default function AboutPage() {
             </div>
             <div className="flex items-end">
               <p className="text-[15px] text-white/[0.35] leading-relaxed max-w-sm" style={{ fontFamily: 'DM Sans,sans-serif' }}>
-                Whether you're a fast-growing startup or a large enterprise, our agents are built to perform anywhere in the world.
+                Whether youre a fast-growing startup or a large enterprise, our agents are built to perform anywhere in the world.
               </p>
             </div>
           </div>

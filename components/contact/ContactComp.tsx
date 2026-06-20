@@ -211,7 +211,7 @@ function getBotReply(userMessage: string): string {
 
   if (matchedSlugs.size === 0) return FALLBACK;
 
-  const matched = [...matchedSlugs]
+    const matched = Array.from(matchedSlugs)
     .map(s => ALL_PRODUCTS.find(p => p.slug === s))
     .filter(Boolean) as Product[];
 
