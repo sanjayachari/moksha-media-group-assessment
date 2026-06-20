@@ -101,7 +101,7 @@ export default function StatsSection() {
               and 24/7 operational intelligence across global deployments.
             </p>
             <div className="mt-6">
-              <a href="#" className="flex items-center gap-2 text-white/40 text-sm hover:text-white/70 transition-colors font-body">
+              <a href="/services" className="flex items-center gap-2 text-white/40 text-sm hover:text-white/70 transition-colors font-body">
                 <span className="font-mono text-white/25">1.0</span>
                 <span>Performance</span>
                 <span>→</span>

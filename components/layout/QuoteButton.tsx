@@ -3,10 +3,9 @@ import Link from 'next/link'
 
 interface QuoteButtonProps {
   mobile?: boolean
-  onOpen?: () => void
 }
 
-export default function QuoteButton({ mobile = false, onOpen }: QuoteButtonProps) {
+export default function QuoteButton({ mobile = false }: QuoteButtonProps) {
   const [hovered, setHovered] = useState(false)
   return (
     <Link
@@ -25,9 +24,6 @@ export default function QuoteButton({ mobile = false, onOpen }: QuoteButtonProps
         color: hovered ? '#fff' : 'rgba(255,255,255,0.88)',
         fontFamily: 'inherit',
       }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onClick={onOpen}
     >
       Ask AI
     </Link>

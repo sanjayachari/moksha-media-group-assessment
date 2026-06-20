@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import RequestQuoteModal from '../modal/RequestQuoteModal'
 import { useState } from 'react'
 
 
@@ -119,7 +118,6 @@ function MobileTimelineItem({ year, title, desc }) {
 }
 
 export default function AboutPage() {
-  const [quoteOpen, setQuoteOpen] = useState(false)
   return (
     <main className="min-h-screen bg-[#070707] relative overflow-x-hidden">
 
@@ -330,8 +328,8 @@ export default function AboutPage() {
 
             <div className="relative z-10 flex flex-wrap items-center gap-4 shrink-0">
               <button
-                onClick={() => setQuoteOpen(true)} 
                 className="relative inline-flex items-center justify-center p-[3px] rounded-full no-underline border border-emerald-400/[0.25] bg-[linear-gradient(135deg,rgba(52,211,153,0.35)_0%,rgba(16,185,129,0.15)_50%,rgba(52,211,153,0.08)_100%)]"
+                onClick={() => alert('Contact form coming soon!')}
               >
                 <span
                   className="flex items-center justify-center px-7 py-[11px] rounded-full text-[14px] font-semibold text-white/[0.95] whitespace-nowrap tracking-[0.02em] bg-[linear-gradient(135deg,rgba(52,211,153,0.22)_0%,rgba(16,185,129,0.08)_100%)] shadow-[inset_0_1px_0_rgba(52,211,153,0.3),inset_0_-1px_0_rgba(0,0,0,0.3)]"
@@ -342,7 +340,7 @@ export default function AboutPage() {
               </button>
 
               <Link
-                href="/solutions"
+                href="/services"
                 className="relative inline-flex items-center justify-center p-[2px] rounded-full no-underline border border-white/[0.10] bg-[linear-gradient(180deg,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0.03)_100%)]"
               >
                 <span
@@ -356,7 +354,6 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
-      <RequestQuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
 
     </main>
   )

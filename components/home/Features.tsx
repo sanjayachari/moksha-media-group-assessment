@@ -191,7 +191,7 @@ export default function Features() {
                   ))}
                 </div>
 
-                <Link href="/solutions">
+                <Link href="/services">
                   <motion.button
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

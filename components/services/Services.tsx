@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, ShieldCheck, Zap, Wind, Network, Box, Bell, Package, LayoutDashboard, Users, BarChart3, Bot, Globe, Check } from 'lucide-react'
-import RequestQuoteModal from '../modal/RequestQuoteModal'
 const UNS = 'https://images.unsplash.com/'
 
 const SOLUTIONS = [
@@ -108,7 +107,7 @@ const SOLUTIONS = [
       { slug: 'compliance', name: 'Compliance Agents', range: 'Regulatory', spec: 'Audit ready', badge: 'Secure', },
     ],
     specs: [
-      { l: 'Deployment Options', v: 'On-prem / Cloud' },
+      { l: 'Deployment Options', v: 'Cloud' },
       { l: 'Compliance', v: 'SOC2, GDPR' },
       { l: 'SLA Guarantee', v: '99.9%' }
     ],
@@ -195,9 +194,27 @@ function AppWindow() {
             )
           })}
           <div className="mt-auto p-3.5 rounded-[10px] bg-white/[0.04] border border-white/[0.08]">
-            <div className="text-[12px] font-semibold text-white leading-[1.3] mb-1.5" style={{ fontFamily: 'Syne, sans-serif' }}>Request a Demo ✦</div>
-            <div className="text-[10px] text-white/[0.35] leading-[1.5] mb-2.5" style={{ fontFamily: 'DM Sans, sans-serif' }}>See our agents in action within 24h.</div>
-            <button className="text-[10px] font-bold text-white bg-white/10 border border-white/[0.16] rounded-[6px] px-2.5 py-[5px] inline-block no-underline">
+            <div
+              className="text-[12px] font-semibold text-white leading-[1.3] mb-1.5"
+              style={{ fontFamily: 'Syne, sans-serif' }}
+              onClick={() => alert('Stay tuned! Demo request feature coming soon.')}
+
+            >
+              Request a Demo ✦
+            </div>
+
+            <div
+              className="text-[10px] text-white/[0.35] leading-[1.5] mb-2.5"
+              style={{ fontFamily: 'DM Sans, sans-serif' }}
+            >
+              See our agents in action within 24h.
+            </div>
+
+            <button
+              type="button"
+              className="text-[10px] font-bold text-white bg-white/10 border border-white/[0.16] rounded-[6px] px-2.5 py-[5px] inline-block"
+              onClick={() => alert('Stay tuned! Demo request feature coming soon.')}
+            >
               Book Demo
             </button>
           </div>
@@ -255,9 +272,6 @@ function AppWindow() {
 
 
 export default function Services() {
-  const [active, setActive] = useState(SOLUTIONS[0].id)
-  const [quoteOpen, setQuoteOpen] = useState(false)
-
 
   return (
     <main className="min-h-screen bg-[#070707] overflow-x-hidden">
@@ -353,12 +367,14 @@ export default function Services() {
                   ))}
                 </ul>
                 {plan.href ? (
-                  <Link href={plan.href}
+                  <button
+                    onClick={() => alert('coming soon!')}
                     className={`w-full inline-flex items-center justify-center text-[12.5px] font-semibold rounded-full px-5 py-2.5 no-underline transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/40 focus-visible:outline-offset-2 ${plan.featured ? 'bg-white text-[#070707] hover:bg-white/85' : 'bg-white/[0.06] text-white/80 border border-white/[0.14] hover:bg-white/10'}`}>
                     {plan.cta}
-                  </Link>
+                  </button>
                 ) : (
-                  <button onClick={() => setQuoteOpen(true)}
+                  <button
+                    onClick={() => alert('coming soon!')}
                     className="w-full inline-flex items-center justify-center text-[12.5px] font-semibold rounded-full px-5 py-2.5 transition-all bg-white/[0.06] text-white/80 border border-white/[0.14] hover:bg-white/10 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/40 focus-visible:outline-offset-2">
                     {plan.cta}
                   </button>
@@ -369,7 +385,6 @@ export default function Services() {
         </div>
       </section>
 
-      <RequestQuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
     </main>
   )
 }
@@ -467,24 +482,36 @@ function SolutionSection({ sol, idx }) {
             </p>
 
             {/* specs row — same card style as Solutions.jsx */}
-            <div style={{
-              display: 'flex', gap: 0, marginBottom: 36,
-              border: '1px solid rgba(255,255,255,0.06)',
-              borderRadius: 14, overflow: 'hidden',
-              ...fadeItem(4)
-            }}>
+            <div
+              className="grid grid-cols-1 md:grid-cols-4 mb-9 border border-white/[0.06] rounded-[14px] overflow-hidden"
+              style={fadeItem(4)}
+            >
               {sol.specs.map((sp, i) => (
-                <div key={sp.l} style={{
-                  flex: 1, padding: '16px 18px',
-                  borderRight: i < sol.specs.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
-                }}>
-                  <div style={{
-                    fontFamily: 'DM Mono,monospace', fontSize: 20, fontWeight: 500,
-                    letterSpacing: '-0.02em', marginBottom: 4,
-                    background: 'linear-gradient(135deg,rgba(52,211,153,1) 0%,#fff 55%,rgba(52,211,153,0.8) 100%)',
-                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-                  }}>{sp.v}</div>
-                  <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)', letterSpacing: '0.1em', textTransform: 'uppercase', fontFamily: 'DM Mono,monospace' }}>
+                <div
+                  key={sp.l}
+                  className="
+        p-4 md:px-[18px]
+        border-b border-white/[0.06]
+        md:border-b-0
+        md:border-r
+        md:border-white/[0.06]
+        last:border-r-0
+      "
+                >
+                  <div
+                    className="font-mono text-[20px] font-medium tracking-[-0.02em] mb-1"
+                    style={{
+                      background:
+                        'linear-gradient(135deg,rgba(52,211,153,1) 0%,#fff 55%,rgba(52,211,153,0.8) 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                    }}
+                  >
+                    {sp.v}
+                  </div>
+
+                  <div className="text-[10px] text-white/25 tracking-[0.1em] uppercase font-mono">
                     {sp.l}
                   </div>
                 </div>
@@ -505,7 +532,9 @@ function SolutionSection({ sol, idx }) {
                   boxShadow: 'inset 0 1px 0 rgba(52,211,153,0.3),inset 0 -1px 0 rgba(0,0,0,0.3)',
                   color: 'rgba(255,255,255,0.95)', fontSize: 13, fontWeight: 600,
                   letterSpacing: '0.02em', fontFamily: 'DM Sans,sans-serif',
-                }}>
+                }}
+                  onClick={() => alert('Stay tuned! Quote request feature coming soon.')}
+                >
                   Request Quote
                 </span>
               </button>
@@ -513,7 +542,9 @@ function SolutionSection({ sol, idx }) {
                 padding: '10px 22px', borderRadius: 9999, cursor: 'pointer', outline: 'none',
                 border: '1px solid rgba(255,255,255,0.09)', background: 'rgba(255,255,255,0.03)',
                 color: 'rgba(255,255,255,0.35)', fontSize: 13, fontFamily: 'DM Sans,sans-serif',
-              }}>
+              }}
+                onClick={() => alert('Stay tuned! Datasheet coming soon.')}
+              >
                 View Datasheet
               </button>
             </div>

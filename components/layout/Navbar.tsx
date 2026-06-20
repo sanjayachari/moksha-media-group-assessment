@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronDown, LayoutDashboard } from 'lucide-react'
 import Link from 'next/link'
-import RequestQuoteModal from '@/components/modal/RequestQuoteModal'
 import { useSession } from 'next-auth/react'
 import QuoteButton from '@/components/layout/QuoteButton'
 import MobileItem from '@/components/layout/MobileItem'
@@ -222,13 +221,12 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Desktop: quote button */}
             <div className="hidden md:flex items-center gap-3 shrink-0">
               <div
                 className="shrink-0 w-px h-4 mx-0.5 bg-white/10 transition-opacity duration-300"
                 style={{ opacity: scrolled ? 0 : 1 }}
               />
-              <QuoteButton onOpen={openQuote} />
+              <QuoteButton />
             </div>
 
             {/* Mobile hamburger */}
@@ -321,7 +319,7 @@ export default function Navbar() {
                   ))}
                 </div>
                 <div className="px-4 pt-3 pb-5">
-                  <QuoteButton mobile onOpen={openQuote} />
+                  <QuoteButton mobile = {true}  />
                 </div>
               </motion.div>
             )}
@@ -329,8 +327,6 @@ export default function Navbar() {
         </motion.div>
       </div>
 
-      {/* Modal outside the pill — clean z-index stacking */}
-      <RequestQuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
     </>
   )
 }

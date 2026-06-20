@@ -81,11 +81,10 @@ export default function PricingTeaser() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`relative rounded-3xl p-8 border transition-all duration-300 hover:-translate-y-1 ${
-                plan.popular 
-                  ? 'border-emerald-400/60 bg-gradient-to-b from-emerald-400/[0.08] to-transparent' 
+              className={`relative rounded-3xl p-8 border transition-all duration-300 hover:-translate-y-1 ${plan.popular
+                  ? 'border-emerald-400/60 bg-gradient-to-b from-emerald-400/[0.08] to-transparent'
                   : 'border-white/[0.08] hover:border-white/[0.15]'
-              }`}
+                }`}
             >
               {plan.popular && (
                 <div className="absolute -top-3 right-6 bg-emerald-400 text-black text-xs font-mono tracking-widest px-4 py-1 rounded-full">
@@ -119,11 +118,13 @@ export default function PricingTeaser() {
               </ul>
 
               <button
-                className={`w-full py-4 rounded-2xl font-medium transition-all ${
-                  plan.popular
+                onClick={() => {
+                  alert(`Coming Soon!! You clicked on the ${plan.name} plan.`)
+                }}
+                className={`w-full py-4 rounded-2xl font-medium transition-all ${plan.popular
                     ? 'bg-emerald-400 text-black hover:bg-emerald-300'
                     : 'border border-white/30 hover:bg-white/5 text-white'
-                }`}
+                  }`}
               >
                 {plan.cta}
               </button>
@@ -132,8 +133,17 @@ export default function PricingTeaser() {
         </div>
 
         <div className="text-center mt-12 text-white/40 text-sm">
-          Need something custom? <a href="#contact" className="text-emerald-400 hover:underline">Talk to our team →</a>
-        </div>
+          Need something custom?{" "}
+          <a
+            href="#"
+            className="text-emerald-400 hover:underline"
+            onClick={(e) => {
+              e.preventDefault()
+              alert("Stay tuned 🚀")
+            }}
+          >
+            Talk to our team →
+          </a>        </div>
       </div>
     </section>
   )

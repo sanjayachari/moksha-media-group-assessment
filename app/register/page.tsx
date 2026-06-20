@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Loader2 } from 'lucide-react'
+import { ArrowLeft, Loader2, Eye, EyeOff } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 
@@ -22,6 +22,9 @@ export default function RegisterPage() {
     password: '',
     confirmPassword: '',
   })
+
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -167,25 +170,47 @@ export default function RegisterPage() {
             required
           />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full bg-zinc-900/80 border border-white/10 focus:border-white/30 rounded-2xl px-5 py-3.5 text-base placeholder:text-white/40 focus:outline-none transition"
-            required
-          />
+          {/* Password Field with Toggle */}
+          <div className="relative">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full bg-zinc-900/80 border border-white/10 focus:border-white/30 rounded-2xl px-5 py-3.5 text-base placeholder:text-white/40 focus:outline-none transition pr-12"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 transition-colors focus:outline-none"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
 
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            className="w-full bg-zinc-900/80 border border-white/10 focus:border-white/30 rounded-2xl px-5 py-3.5 text-base placeholder:text-white/40 focus:outline-none transition"
-            required
-          />
+          {/* Confirm Password Field with Toggle */}
+          <div className="relative">
+            <input
+              type={showConfirmPassword ? 'text' : 'password'}
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className="w-full bg-zinc-900/80 border border-white/10 focus:border-white/30 rounded-2xl px-5 py-3.5 text-base placeholder:text-white/40 focus:outline-none transition pr-12"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 transition-colors focus:outline-none"
+              aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+            >
+              {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
 
           <button
             type="submit"
