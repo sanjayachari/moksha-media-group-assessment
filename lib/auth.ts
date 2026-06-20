@@ -14,7 +14,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Missing email or password")
+          return null
         }
 
         await dbConnect()
@@ -22,13 +22,13 @@ export const authOptions: NextAuthOptions = {
         const user = await User.findOne({ email: credentials.email.toLowerCase() }).select("+password")
 
         if (!user || !user.password) {
-          throw new Error("Invalid email or password")
+          return null
         }
 
         const isValid = await bcrypt.compare(credentials.password, user.password)
 
         if (!isValid) {
-          throw new Error("Invalid email or password")
+          return null
         }
 
         return {

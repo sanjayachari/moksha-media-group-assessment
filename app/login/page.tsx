@@ -53,7 +53,11 @@ export default function LoginPage() {
       })
 
       if (res?.error) {
-        setError(res.error)
+        if (res.error === 'CredentialsSignin') {
+          setError('Invalid email or password.')
+        } else {
+          setError(res.error)
+        }
       } else {
         router.push('/dashboard')
       }
